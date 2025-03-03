@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import ProjectCard from "../ui/ProjectCard";
 import { useState } from "react";
+import { Building, Factory, Flag, FlagTriangleRight } from "lucide-react";
 
 interface ProjectsProps {
   className?: string;
@@ -69,6 +70,13 @@ const categories = [
   "Consulting & Support"
 ];
 
+const companyLogos = [
+  { name: "RIL", icon: <Building className="w-8 h-8" /> },
+  { name: "TATA", icon: <Flag className="w-8 h-8" /> },
+  { name: "OLA", icon: <Factory className="w-8 h-8" /> },
+  { name: "Zepto", icon: <FlagTriangleRight className="w-8 h-8" /> }
+];
+
 const Projects = ({ className }: ProjectsProps) => {
   const [activeCategory, setActiveCategory] = useState("All");
   
@@ -119,19 +127,21 @@ const Projects = ({ className }: ProjectsProps) => {
             <ProjectCard 
               key={index}
               {...project}
-              className="animate-fade-in"
-              style={{ animationDelay: `${0.1 * index}s` }}
+              className={`animate-fade-in delay-[${0.1 * index}s]`}
             />
           ))}
         </div>
         
         {/* Client Logos */}
         <div className="mt-20">
-          <p className="text-center text-muted-foreground mb-8">Trusted by innovative companies worldwide</p>
+          <p className="text-center text-muted-foreground mb-8">TRUSTED BY INNOVATIVE COMPANIES</p>
           <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-10">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="h-12 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <div className="bg-muted-foreground/30 h-10 w-32 rounded-md"></div>
+            {companyLogos.map((company, i) => (
+              <div key={i} className="flex flex-col items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300">
+                <div className="bg-white/10 p-4 rounded-full mb-2 teal-glow">
+                  {company.icon}
+                </div>
+                <span className="text-sm font-medium">{company.name}</span>
               </div>
             ))}
           </div>

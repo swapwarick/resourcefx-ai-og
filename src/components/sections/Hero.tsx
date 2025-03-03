@@ -31,7 +31,7 @@ const Hero = ({ className }: HeroProps) => {
 
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6 animate-slide-down" style={{ animationDelay: "0.4s" }}>
           Transforming Business <br className="hidden md:block" />
-          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent orange-glow-text">Through Intelligent AI</span>
+          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent teal-glow-text">Through Intelligent AI</span>
         </h1>
 
         <p className="max-w-2xl mx-auto text-xl text-muted-foreground mb-10 animate-slide-down" style={{ animationDelay: "0.6s" }}>
@@ -39,7 +39,7 @@ const Hero = ({ className }: HeroProps) => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-down" style={{ animationDelay: "0.8s" }}>
-          <a href="#contact" className="btn-primary orange-glow flex items-center">
+          <a href="#contact" className="btn-primary teal-glow flex items-center">
             <span>Get Started</span>
             <ArrowRight className="ml-2 w-4 h-4" />
           </a>
@@ -50,7 +50,7 @@ const Hero = ({ className }: HeroProps) => {
 
         {/* Hero Image */}
         <div className="mt-16 relative max-w-4xl mx-auto animate-slide-down" style={{ animationDelay: "1s" }}>
-          <div className="glass-dark overflow-hidden rounded-xl shadow-xl orange-glow">
+          <div className="glass-dark overflow-hidden rounded-xl shadow-xl teal-glow">
             <img 
               src="https://images.unsplash.com/photo-1680693781384-9539a1bccef2?q=80&w=1200&auto=format&fit=crop" 
               alt="AI-powered data visualization" 
@@ -97,9 +97,9 @@ const Hero = ({ className }: HeroProps) => {
         <div className="mt-20 animate-slide-down" style={{ animationDelay: "1.2s" }}>
           <p className="text-sm text-muted-foreground mb-6">TRUSTED BY INNOVATIVE COMPANIES</p>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <div className="bg-muted h-6 w-24 rounded-md"></div>
+            {["RIL", "TATA", "OLA", "Zepto"].map((company, i) => (
+              <div key={i} className="flex items-center opacity-80 hover:opacity-100 transition-all duration-300">
+                <span className="text-foreground font-medium">{company}</span>
               </div>
             ))}
           </div>

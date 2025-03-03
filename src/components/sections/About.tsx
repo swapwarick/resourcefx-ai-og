@@ -80,7 +80,7 @@ const team = [
 
 const testimonials = [
   {
-    quote: "NexusAI transformed our customer service with their Voice Agents. The implementation was smooth, and we've seen a 40% increase in customer satisfaction scores.",
+    quote: "ResourceFX AI transformed our customer service with their Voice Agents. The implementation was smooth, and we've seen a 40% increase in customer satisfaction scores.",
     name: "Jennifer Reyes",
     title: "CTO, GloboTech Solutions",
     imageSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
@@ -92,7 +92,7 @@ const testimonials = [
     imageSrc: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop"
   },
   {
-    quote: "Working with NexusAI on our AI strategy provided clarity and direction. Their team's expertise is unmatched, and they delivered beyond our expectations.",
+    quote: "Working with ResourceFX AI on our AI strategy provided clarity and direction. Their team's expertise is unmatched, and they delivered beyond our expectations.",
     name: "Sophia Rodriguez",
     title: "CEO, Fintech Innovations",
     imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
@@ -116,7 +116,7 @@ const About = ({ className }: AboutProps) => {
 
       <div className="container mx-auto px-6">
         <SectionHeading 
-          title="About NexusAI" 
+          title="About ResourceFX AI" 
           subtitle="We're a team of AI specialists, engineers, and business strategists on a mission to make artificial intelligence accessible and impactful for businesses of all sizes."
         />
         
@@ -169,8 +169,7 @@ const About = ({ className }: AboutProps) => {
               <TeamMember 
                 key={index}
                 {...member}
-                className="animate-fade-in"
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className={`animate-fade-in delay-[${0.2 * index}s]`}
               />
             ))}
           </div>
@@ -180,15 +179,14 @@ const About = ({ className }: AboutProps) => {
         <div>
           <SectionHeading 
             title="Client Testimonials" 
-            subtitle="Don't just take our word for it. Here's what our clients have to say about working with NexusAI."
+            subtitle="Don't just take our word for it. Here's what our clients have to say about working with ResourceFX AI."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className="glass-card p-8 flex flex-col animate-fade-in"
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className={`glass-card p-8 flex flex-col animate-fade-in delay-[${0.2 * index}s]`}
               >
                 <div className="mb-6">
                   {[...Array(5)].map((_, i) => (

@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">
-              ResourceFX <span className="text-primary orange-glow-text">AI</span>
+              ResourceFX <span className="text-primary teal-glow-text">AI</span>
             </h3>
             <p className="text-muted mb-6 text-sm">
               Pioneering the future of AI solutions for businesses of all sizes. 
