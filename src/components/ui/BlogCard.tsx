@@ -46,12 +46,12 @@ const BlogCard = ({
           <span className="text-xs font-medium text-primary px-2 py-1 bg-primary/10 rounded-full">
             {category}
           </span>
-          <span className="text-xs text-muted-foreground ml-3">
+          <span className="text-xs text-black-visible ml-3">
             {date}
           </span>
         </div>
-        <h3 className="text-xl font-semibold mb-3 line-clamp-2">{title}</h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+        <h3 className="text-xl font-semibold mb-3 line-clamp-2 text-black-visible">{title}</h3>
+        <p className="text-black-visible text-sm mb-4 line-clamp-3">
           {excerpt}
         </p>
         <div className="flex items-center justify-between pt-4 border-t border-border">
@@ -67,7 +67,7 @@ const BlogCard = ({
                 {author.name.charAt(0)}
               </div>
             )}
-            <span className="text-sm font-medium">{author.name}</span>
+            <span className="text-sm font-medium text-black-visible">{author.name}</span>
           </div>
           <button className="flex items-center text-primary text-sm font-medium">
             <span className="mr-2">Read</span>

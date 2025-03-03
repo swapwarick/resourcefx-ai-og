@@ -39,14 +39,14 @@ const ProjectCard = ({
             {clientName}
           </span>
         )}
-        <h3 className="text-xl font-semibold mb-3">{title}</h3>
-        <p className="text-muted-foreground text-sm mb-4">
+        <h3 className="text-xl font-semibold mb-3 text-black-visible">{title}</h3>
+        <p className="text-black-visible text-sm mb-4">
           {description}
         </p>
         {outcome && (
           <div className="border-t border-border pt-4 mt-4">
-            <p className="text-sm font-medium">Outcome:</p>
-            <p className="text-sm text-muted-foreground">{outcome}</p>
+            <p className="text-sm font-medium text-black-visible">Outcome:</p>
+            <p className="text-sm text-black-visible">{outcome}</p>
           </div>
         )}
         <div className="mt-6 flex justify-end">

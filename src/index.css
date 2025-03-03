@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -47,6 +46,10 @@
     /* New colors for better text visibility */
     --text-dark: 0 0% 0%;
     --text-teal-dark: 180 100% 30%;
+    --card-text: 0 0% 0%;
+    --input-text: 0 0% 0%;
+    --input-background: 0 0% 100%;
+    --card-background: 0 0% 100%;
   }
 }
 
@@ -74,6 +77,21 @@
   ::placeholder {
     color: hsl(var(--text-dark) / 0.6);
   }
+  
+  /* Better card text visibility */
+  .glass-card {
+    color: black;
+  }
+  
+  /* Style headings inside cards for better visibility */
+  .glass-card h1, .glass-card h2, .glass-card h3, .glass-card h4, .glass-card h5, .glass-card h6 {
+    color: hsl(var(--text-dark));
+  }
+  
+  /* Style paragraphs inside cards for better visibility */
+  .glass-card p, .glass-card span, .glass-card div {
+    color: hsl(var(--text-dark) / 0.8);
+  }
 }
 
 @layer components {
@@ -82,7 +100,7 @@
   }
 
   .glass-card {
-    @apply bg-white/90 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg;
+    @apply bg-white/90 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg text-black;
   }
   
   .subtle-shadow {
@@ -194,4 +212,29 @@ img {
 /* Text with teal dark color for better visibility */
 .text-teal-dark {
   color: hsl(var(--text-teal-dark));
+}
+
+/* Card text styling for better visibility */
+.card-text {
+  color: black;
+}
+
+/* Input text styling for better visibility */
+.input-text {
+  color: black !important;
+}
+
+/* Input background for better visibility */
+.input-bg {
+  background-color: white !important;
+}
+
+/* Card content styling for better visibility */
+.glass-card-content {
+  color: black;
+}
+
+/* Card headings */
+.glass-card-heading {
+  color: black;
 }

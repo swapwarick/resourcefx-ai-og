@@ -39,9 +39,9 @@ const TeamMember = ({
         />
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold">{name}</h3>
+        <h3 className="text-xl font-semibold text-black-visible">{name}</h3>
         <p className="text-primary font-medium text-sm mb-3">{role}</p>
-        <p className="text-muted-foreground text-sm mb-4">
+        <p className="text-black-visible text-sm mb-4">
           {bio}
         </p>
         {socialLinks && socialLinks.length > 0 && (

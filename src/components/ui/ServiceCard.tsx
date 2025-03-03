@@ -22,9 +22,9 @@ const ServiceCard = ({ title, description, icon: Icon, features, className }: Se
         <div className="flex justify-center items-center w-12 h-12 rounded-xl bg-primary/10 text-primary">
           <Icon className="w-6 h-6" />
         </div>
-        <h3 className="ml-4 text-xl font-semibold">{title}</h3>
+        <h3 className="ml-4 text-xl font-semibold text-black-visible">{title}</h3>
       </div>
-      <p className="text-muted-foreground mb-6">{description}</p>
+      <p className="text-black-visible mb-6">{description}</p>
       {features && features.length > 0 && (
         <ul className="space-y-2 mt-auto">
           {features.map((feature, index) => (
@@ -32,7 +32,7 @@ const ServiceCard = ({ title, description, icon: Icon, features, className }: Se
               <svg className="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span className="text-sm text-muted-foreground">{feature}</span>
+              <span className="text-sm text-black-visible">{feature}</span>
             </li>
           ))}
         </ul>
