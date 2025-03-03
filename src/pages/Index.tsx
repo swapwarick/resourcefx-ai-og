@@ -1,12 +1,59 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useState, useEffect } from "react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Services from "@/components/sections/Services";
+import Projects from "@/components/sections/Projects";
+import Blog from "@/components/sections/Blog";
+import Contact from "@/components/sections/Contact";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading for smoother transitions
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-background">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen">
+      <Navbar />
+      
+      <main>
+        <Hero />
+        <About />
+        <Services />
+        <Projects />
+        <Blog />
+        <Contact />
+      </main>
+      
+      <Footer />
+      
+      {/* Back to top button */}
+      <a 
+        href="#home" 
+        className="fixed bottom-8 right-8 p-3 rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 transition-all duration-300 opacity-80 hover:opacity-100 z-50"
+        aria-label="Back to top"
+      >
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5L12 19M12 5L18 11M12 5L6 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </a>
     </div>
   );
 };
