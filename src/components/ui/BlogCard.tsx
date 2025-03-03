@@ -13,6 +13,7 @@ interface BlogCardProps {
     avatar?: string;
   };
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const BlogCard = ({ 
@@ -22,7 +23,8 @@ const BlogCard = ({
   date, 
   category,
   author,
-  className 
+  className,
+  style 
 }: BlogCardProps) => {
   return (
     <div 
@@ -30,6 +32,7 @@ const BlogCard = ({
         "glass-card overflow-hidden hover-lift transition-all duration-300",
         className
       )}
+      style={style}
     >
       <div className="h-48 overflow-hidden">
         <img 

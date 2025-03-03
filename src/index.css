@@ -43,6 +43,10 @@
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 240 5% 20%;
     --sidebar-ring: 180 70% 50%;
+    
+    /* New colors for better text visibility */
+    --text-dark: 0 0% 0%;
+    --text-teal-dark: 180 100% 30%;
   }
 }
 
@@ -58,6 +62,17 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  /* Make form inputs have better text visibility */
+  input, textarea, select {
+    color: black;
+    background-color: white;
+  }
+  
+  /* Placeholder text */
+  ::placeholder {
+    color: hsl(var(--text-dark) / 0.6);
   }
 }
 
@@ -100,6 +115,15 @@
   
   .section-subtitle {
     @apply text-lg md:text-xl text-muted-foreground mt-4 max-w-3xl mx-auto;
+  }
+
+  /* Form input styles with better visibility */
+  .form-input {
+    @apply bg-white text-black border border-gray-300 rounded-lg px-4 py-3 w-full focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  
+  .form-label {
+    @apply text-white font-medium mb-2 block;
   }
 }
 
@@ -145,7 +169,7 @@ img {
   clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
 }
 
-/* Teal glow effects */
+/* Teal glow effects - updated from orange to teal */
 .teal-glow {
   box-shadow: 0 0 15px 2px rgba(51, 195, 240, 0.3);
 }
@@ -160,4 +184,14 @@ img {
 
 .glass-dark {
   @apply bg-secondary/40 backdrop-blur-md border border-white/10 shadow-lg;
+}
+
+/* Text with black color for better visibility */
+.text-black-visible {
+  color: black;
+}
+
+/* Text with teal dark color for better visibility */
+.text-teal-dark {
+  color: hsl(var(--text-teal-dark));
 }
