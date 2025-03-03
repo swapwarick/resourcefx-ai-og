@@ -24,7 +24,7 @@ const SectionHeading = ({
     )}>
       <div className="flex items-center justify-center mb-4">
         <div className="h-px w-8 bg-primary mr-3 opacity-80"></div>
-        <span className="text-sm uppercase tracking-widest text-primary font-medium">
+        <span className="text-sm uppercase tracking-widest text-primary font-medium orange-glow-text">
           {title.split(' ')[0]}
         </span>
       </div>

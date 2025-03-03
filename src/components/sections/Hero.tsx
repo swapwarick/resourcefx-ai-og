@@ -17,21 +17,21 @@ const Hero = ({ className }: HeroProps) => {
     >
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary/5 to-transparent"></div>
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute top-1/4 right-1/3 w-80 h-80 bg-accent/20 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary/10 to-transparent"></div>
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl animate-float"></div>
+        <div className="absolute top-1/4 right-1/3 w-80 h-80 bg-accent/10 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "2s" }}></div>
       </div>
 
       <div className="container px-6 py-12 mx-auto text-center">
         <div className="animate-slide-down" style={{ animationDelay: "0.2s" }}>
-          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary">
+          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-medium rounded-full bg-primary/20 text-primary">
             Next-Generation AI Solutions
           </span>
         </div>
 
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6 animate-slide-down" style={{ animationDelay: "0.4s" }}>
           Transforming Business <br className="hidden md:block" />
-          <span className="text-gradient">Through Intelligent AI</span>
+          <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent orange-glow-text">Through Intelligent AI</span>
         </h1>
 
         <p className="max-w-2xl mx-auto text-xl text-muted-foreground mb-10 animate-slide-down" style={{ animationDelay: "0.6s" }}>
@@ -39,7 +39,7 @@ const Hero = ({ className }: HeroProps) => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-down" style={{ animationDelay: "0.8s" }}>
-          <a href="#contact" className="btn-primary flex items-center">
+          <a href="#contact" className="btn-primary orange-glow flex items-center">
             <span>Get Started</span>
             <ArrowRight className="ml-2 w-4 h-4" />
           </a>
@@ -50,20 +50,20 @@ const Hero = ({ className }: HeroProps) => {
 
         {/* Hero Image */}
         <div className="mt-16 relative max-w-4xl mx-auto animate-slide-down" style={{ animationDelay: "1s" }}>
-          <div className="glass-card overflow-hidden rounded-xl shadow-xl">
+          <div className="glass-dark overflow-hidden rounded-xl shadow-xl orange-glow">
             <img 
               src="https://images.unsplash.com/photo-1680693781384-9539a1bccef2?q=80&w=1200&auto=format&fit=crop" 
               alt="AI-powered data visualization" 
-              className="w-full h-auto rounded-xl"
+              className="w-full h-auto rounded-xl opacity-90"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
               <span className="text-sm font-medium">Intelligent AI solutions for modern businesses</span>
             </div>
           </div>
           
           {/* Floating cards */}
-          <div className="absolute -top-6 -right-6 w-48 glass-card p-4 opacity-90 hidden md:block animate-float" style={{ animationDelay: "1.5s" }}>
+          <div className="absolute -top-6 -right-6 w-48 glass-dark p-4 opacity-90 hidden md:block animate-float" style={{ animationDelay: "1.5s" }}>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary mr-3">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -77,7 +77,7 @@ const Hero = ({ className }: HeroProps) => {
             </div>
           </div>
           
-          <div className="absolute -bottom-4 -left-6 w-48 glass-card p-4 opacity-90 hidden md:block animate-float" style={{ animationDelay: "2s" }}>
+          <div className="absolute -bottom-4 -left-6 w-48 glass-dark p-4 opacity-90 hidden md:block animate-float" style={{ animationDelay: "2s" }}>
             <div className="flex items-center">
               <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center text-accent mr-3">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
@@ -99,7 +99,7 @@ const Hero = ({ className }: HeroProps) => {
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="h-8 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                <div className="bg-muted-foreground/30 h-6 w-24 rounded-md"></div>
+                <div className="bg-muted h-6 w-24 rounded-md"></div>
               </div>
             ))}
           </div>

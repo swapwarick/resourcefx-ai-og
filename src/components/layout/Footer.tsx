@@ -11,23 +11,23 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-4">
-              Nexus<span className="text-primary">AI</span>
+              ResourceFX <span className="text-primary orange-glow-text">AI</span>
             </h3>
             <p className="text-muted mb-6 text-sm">
               Pioneering the future of AI solutions for businesses of all sizes. 
               From RAG applications to Voice Agents, we're your partner in AI innovation.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted hover:text-white transition-colors">
+              <a href="#" className="text-muted hover:text-primary transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted hover:text-white transition-colors">
+              <a href="#" className="text-muted hover:text-primary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted hover:text-white transition-colors">
+              <a href="#" className="text-muted hover:text-primary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted hover:text-white transition-colors">
+              <a href="#" className="text-muted hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -41,7 +41,7 @@ const Footer = () => {
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 
-                    className="text-muted hover:text-white transition-colors text-sm flex items-center"
+                    className="text-muted hover:text-primary transition-colors text-sm flex items-center"
                   >
                     <ArrowRight className="w-3 h-3 mr-2" />
                     {item}
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li key={item}>
                   <a 
                     href="#services" 
-                    className="text-muted hover:text-white transition-colors text-sm flex items-center"
+                    className="text-muted hover:text-primary transition-colors text-sm flex items-center"
                   >
                     <ArrowRight className="w-3 h-3 mr-2" />
                     {item}
@@ -86,7 +86,7 @@ const Footer = () => {
               </li>
               <li className="text-sm text-muted">
                 <span className="block font-medium text-white mb-1">Email</span>
-                info@nexusai.com
+                info@resourcefxai.com
               </li>
               <li className="text-sm text-muted">
                 <span className="block font-medium text-white mb-1">Phone</span>
@@ -98,7 +98,7 @@ const Footer = () => {
         
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted mb-4 md:mb-0">
-            © {currentYear} NexusAI. All rights reserved.
+            © {currentYear} ResourceFX AI. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-sm text-muted hover:text-white transition-colors">

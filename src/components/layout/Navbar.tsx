@@ -52,7 +52,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <a href="#home" className="font-bold text-xl md:text-2xl text-foreground">
-          Nexus<span className="text-primary">AI</span>
+          ResourceFX <span className="text-primary orange-glow-text">AI</span>
         </a>
         
         {/* Desktop Navigation */}
@@ -71,7 +71,7 @@ const Navbar = () => {
           ))}
           <a 
             href="#contact" 
-            className="btn-primary text-sm ml-4"
+            className="btn-primary orange-glow text-sm ml-4"
           >
             Get Started
           </a>
@@ -116,7 +116,7 @@ const Navbar = () => {
           ))}
           <a 
             href="#contact" 
-            className="btn-primary text-center mt-6"
+            className="btn-primary orange-glow text-center mt-6"
             onClick={closeMobileMenu}
           >
             Get Started

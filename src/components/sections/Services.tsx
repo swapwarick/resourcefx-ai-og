@@ -82,7 +82,7 @@ const Services = ({ className }: ServicesProps) => {
     <section 
       id="services" 
       className={cn(
-        "py-20 bg-muted/30 clip-diagonal",
+        "py-20 bg-secondary/50 clip-diagonal",
         className
       )}
     >
@@ -100,19 +100,19 @@ const Services = ({ className }: ServicesProps) => {
               description={service.description}
               icon={service.icon}
               features={service.features}
-              className="animate-fade-in"
-              style={{ animationDelay: `${0.1 * index}s` }}
+              className={`animate-fade-in ${index % 2 === 0 ? 'orange-glow' : ''}`}
+              // Removing style prop that was causing the error
             />
           ))}
         </div>
         
         {/* CTA */}
-        <div className="mt-20 glass-card p-10 text-center max-w-4xl mx-auto animate-fade-in" style={{ animationDelay: "0.6s" }}>
+        <div className="mt-20 glass-dark p-10 text-center max-w-4xl mx-auto animate-fade-in orange-glow">
           <h3 className="text-3xl font-bold mb-4">Ready to transform your business with AI?</h3>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
             Whether you're just starting your AI journey or looking to enhance existing systems, we have the expertise to help you succeed.
           </p>
-          <a href="#contact" className="btn-primary inline-flex items-center">
+          <a href="#contact" className="btn-primary orange-glow inline-flex items-center">
             <span>Schedule a Consultation</span>
             <svg className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none">
               <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
