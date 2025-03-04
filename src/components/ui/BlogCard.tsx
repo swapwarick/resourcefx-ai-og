@@ -8,7 +8,7 @@ interface BlogCardProps {
   imageSrc: string;
   date: string;
   category: string;
-  author: {
+  author?: {
     name: string;
     avatar?: string;
   };
@@ -22,7 +22,6 @@ const BlogCard = ({
   imageSrc, 
   date, 
   category,
-  author,
   className,
   style 
 }: BlogCardProps) => {
@@ -54,21 +53,7 @@ const BlogCard = ({
         <p className="text-black-visible text-sm mb-4 line-clamp-3">
           {excerpt}
         </p>
-        <div className="flex items-center justify-between pt-4 border-t border-border">
-          <div className="flex items-center">
-            {author.avatar ? (
-              <img 
-                src={author.avatar} 
-                alt={author.name} 
-                className="w-8 h-8 rounded-full mr-2 object-cover"
-              />
-            ) : (
-              <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center mr-2">
-                {author.name.charAt(0)}
-              </div>
-            )}
-            <span className="text-sm font-medium text-black-visible">{author.name}</span>
-          </div>
+        <div className="flex justify-end pt-4 border-t border-border">
           <button className="flex items-center text-primary text-sm font-medium">
             <span className="mr-2">Read</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

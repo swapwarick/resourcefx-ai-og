@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import BlogCard from "../ui/BlogCard";
@@ -14,66 +13,42 @@ const blogData = [
     excerpt: "Explore how Retrieval-Augmented Generation is revolutionizing the way AI systems access and utilize information for more accurate and contextual responses.",
     imageSrc: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=500&auto=format&fit=crop",
     date: "June 15, 2023",
-    category: "RAG Applications",
-    author: {
-      name: "Dr. Priya Patel",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "RAG Applications"
   },
   {
     title: "Voice Agents: Creating Natural Conversational Experiences",
     excerpt: "Learn about the latest advancements in voice technology and how businesses are implementing voice agents to enhance customer interactions.",
     imageSrc: "https://images.unsplash.com/photo-1590086782957-93c06ef21604?q=80&w=500&auto=format&fit=crop",
     date: "July 22, 2023",
-    category: "Voice Agents",
-    author: {
-      name: "Michael Chen",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "Voice Agents"
   },
   {
     title: "The Rise of Autonomous AI Agents in Business Operations",
     excerpt: "Discover how autonomous AI agents are transforming business processes by automating complex tasks and making intelligent decisions.",
     imageSrc: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=500&auto=format&fit=crop",
     date: "August 8, 2023",
-    category: "Agentic AI",
-    author: {
-      name: "Sarah Johnson",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "Agentic AI"
   },
   {
     title: "Developing an AI Strategy for Your Organization",
     excerpt: "A comprehensive guide to creating an effective AI strategy that aligns with your business goals and delivers measurable results.",
     imageSrc: "https://images.unsplash.com/photo-1575089976121-8ed7b2a54265?q=80&w=500&auto=format&fit=crop",
     date: "September 4, 2023",
-    category: "Consulting",
-    author: {
-      name: "David Wilson",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "Consulting"
   },
   {
     title: "The Ethics of AI: Responsible Development Practices",
     excerpt: "An exploration of ethical considerations in AI development and how organizations can ensure their AI systems are transparent, fair, and accountable.",
     imageSrc: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=500&auto=format&fit=crop",
     date: "October 12, 2023",
-    category: "AI Ethics",
-    author: {
-      name: "Dr. Priya Patel",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "AI Ethics"
   },
   {
     title: "Integrating AI with Legacy Systems: A Practical Approach",
     excerpt: "Practical strategies for integrating modern AI capabilities with existing legacy systems to maximize ROI without complete infrastructure overhauls.",
     imageSrc: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=500&auto=format&fit=crop",
     date: "November 30, 2023",
-    category: "Integration",
-    author: {
-      name: "Michael Chen",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=500&auto=format&fit=crop"
-    }
+    category: "Integration"
   }
 ];
 
@@ -92,7 +67,6 @@ const Blog = ({ className }: BlogProps) => {
           subtitle="Stay updated with the latest trends, technologies, and best practices in the world of artificial intelligence."
         />
         
-        {/* Search and Filters */}
         <div className="mb-12 max-w-xl mx-auto">
           <div className="relative">
             <input
@@ -122,7 +96,6 @@ const Blog = ({ className }: BlogProps) => {
           </div>
         </div>
         
-        {/* Blog Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogData.map((post, index) => (
             <BlogCard 
@@ -134,7 +107,6 @@ const Blog = ({ className }: BlogProps) => {
           ))}
         </div>
         
-        {/* View All */}
         <div className="text-center mt-12">
           <button className="btn-secondary inline-flex items-center">
             <span>View All Articles</span>
@@ -144,7 +116,6 @@ const Blog = ({ className }: BlogProps) => {
           </button>
         </div>
         
-        {/* Newsletter */}
         <div className="mt-20 glass-card p-10 max-w-4xl mx-auto animate-fade-in">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h3>

@@ -41,7 +41,7 @@ const Footer = () => {
                 <li key={item}>
                   <a 
                     href={`#${item.toLowerCase()}`} 
-                    className="text-muted hover:text-primary transition-colors text-sm flex items-center"
+                    className="text-white hover:text-primary transition-colors text-sm flex items-center"
                   >
                     <ArrowRight className="w-3 h-3 mr-2" />
                     {item}
@@ -66,7 +66,7 @@ const Footer = () => {
                 <li key={item}>
                   <a 
                     href="#services" 
-                    className="text-muted hover:text-primary transition-colors text-sm flex items-center"
+                    className="text-white hover:text-primary transition-colors text-sm flex items-center"
                   >
                     <ArrowRight className="w-3 h-3 mr-2" />
                     {item}
@@ -80,34 +80,30 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-3">
-              <li className="text-sm text-muted">
+              <li className="text-sm text-white">
                 <span className="block font-medium text-white mb-1">Address</span>
-                123 AI Boulevard, Tech City, CA 94107
+                B302 Nirvaana Greens, Panvel, MH, India
               </li>
-              <li className="text-sm text-muted">
+              <li className="text-sm text-white">
                 <span className="block font-medium text-white mb-1">Email</span>
-                info@resourcefxai.com
-              </li>
-              <li className="text-sm text-muted">
-                <span className="block font-medium text-white mb-1">Phone</span>
-                +1 (555) 123-4567
+                swap.ricky@gmail.com
               </li>
             </ul>
           </div>
         </div>
         
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted mb-4 md:mb-0">
+          <p className="text-sm text-white mb-4 md:mb-0">
             © {currentYear} ResourceFX AI. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-sm text-muted hover:text-white transition-colors">
+            <a href="#" className="text-sm text-white hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-sm text-muted hover:text-white transition-colors">
+            <a href="#" className="text-sm text-white hover:text-white transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="text-sm text-muted hover:text-white transition-colors">
+            <a href="#" className="text-sm text-white hover:text-white transition-colors">
               Cookies Policy
             </a>
           </div>

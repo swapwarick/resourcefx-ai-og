@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import TeamMember from "../ui/TeamMember";
@@ -33,20 +32,17 @@ const testimonials = [
   {
     quote: "ResourceFX AI transformed our customer service with their Voice Agents. The implementation was smooth, and we've seen a 40% increase in customer satisfaction scores.",
     name: "Rajesh Sharma",
-    title: "CTO, TechVision India",
-    imageSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
+    title: "CTO, TechVision India"
   },
   {
     quote: "Their RAG implementation helped our research team access critical information 5x faster. The custom knowledge base they built is a game-changer for our operations.",
     name: "Ananya Patel",
-    title: "Research Director, MedIndia",
-    imageSrc: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop"
+    title: "Research Director, MedIndia"
   },
   {
     quote: "Working with ResourceFX AI on our AI strategy provided clarity and direction. Their team's expertise is unmatched, and they delivered beyond our expectations.",
     name: "Vikram Malhotra",
-    title: "CEO, Bharat Fintech",
-    imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+    title: "CEO, Bharat Fintech"
   }
 ];
 
@@ -137,7 +133,8 @@ const About = ({ className }: AboutProps) => {
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className={`glass-card p-8 flex flex-col animate-fade-in delay-[${0.2 * index}s]`}
+                className={`glass-card p-8 flex flex-col animate-fade-in`}
+                style={{ animationDelay: `${0.2 * index}s` }}
               >
                 <div className="mb-6">
                   {[...Array(5)].map((_, i) => (
@@ -147,16 +144,9 @@ const About = ({ className }: AboutProps) => {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 italic">"{testimonial.quote}"</p>
-                <div className="mt-auto flex items-center">
-                  <img 
-                    src={testimonial.imageSrc} 
-                    alt={testimonial.name} 
-                    className="w-10 h-10 rounded-full object-cover mr-3"
-                  />
-                  <div>
-                    <p className="font-medium text-sm">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.title}</p>
-                  </div>
+                <div className="mt-auto">
+                  <p className="font-medium text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-muted-foreground">{testimonial.title}</p>
                 </div>
               </div>
             ))}

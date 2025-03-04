@@ -20,7 +20,7 @@ const ServiceCard = ({ title, description, icon: Icon, features, className }: Se
     >
       <div className="flex items-center mb-6">
         <div className="flex justify-center items-center w-12 h-12 rounded-xl bg-primary/10 text-primary">
-          <Icon className="w-6 h-6" />
+          <Icon className="w-6 h-6 teal-glow-text" />
         </div>
         <h3 className="ml-4 text-xl font-semibold text-black-visible">{title}</h3>
       </div>

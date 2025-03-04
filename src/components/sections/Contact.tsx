@@ -1,7 +1,6 @@
-
 import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Brain, Mail, MapPin } from "lucide-react";
 
 interface ContactProps {
   className?: string;
@@ -42,9 +41,9 @@ const Contact = ({ className }: ContactProps) => {
                 <div>
                   <h4 className="font-medium mb-1">Office Location</h4>
                   <p className="text-muted-foreground">
-                    123 AI Boulevard<br />
-                    Tech City, CA 94107<br />
-                    United States
+                    B302 Nirvaana Greens<br />
+                    Panvel, MH<br />
+                    India
                   </p>
                 </div>
               </div>
@@ -56,31 +55,15 @@ const Contact = ({ className }: ContactProps) => {
                 <div>
                   <h4 className="font-medium mb-1">Email Us</h4>
                   <p className="text-muted-foreground">
-                    info@nexusai.com<br />
-                    support@nexusai.com
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="bg-primary/10 p-3 rounded-lg text-primary mr-4">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="font-medium mb-1">Call Us</h4>
-                  <p className="text-muted-foreground">
-                    +1 (555) 123-4567<br />
-                    Mon-Fri, 9am-6pm PST
+                    swap.ricky@gmail.com
                   </p>
                 </div>
               </div>
             </div>
             
-            {/* Map */}
-            <div className="mt-8 rounded-xl overflow-hidden h-64 bg-muted border border-muted">
-              <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
-                <span>Google Maps Embedded Location</span>
-              </div>
+            {/* AI Icon in place of Google Map */}
+            <div className="mt-8 rounded-xl overflow-hidden h-64 bg-secondary/20 border border-muted flex items-center justify-center">
+              <Brain className="w-32 h-32 text-primary teal-glow-text" />
             </div>
           </div>
           
@@ -157,7 +140,6 @@ const Contact = ({ className }: ContactProps) => {
           </div>
         </div>
         
-        {/* FAQ Section */}
         <div className="mt-20 max-w-4xl mx-auto">
           <h3 className="text-2xl font-semibold mb-8 text-center">Frequently Asked Questions</h3>
           
