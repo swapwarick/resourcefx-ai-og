@@ -10,65 +10,16 @@ interface AboutProps {
 
 const team = [
   {
-    name: "Sarah Johnson",
+    name: "Swapnil Netankar",
     role: "CEO & AI Strategist",
-    imageSrc: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=500&auto=format&fit=crop",
-    bio: "Former Google AI researcher with 15+ years experience leading tech innovation.",
-    socialLinks: [
-      {
-        platform: "twitter",
-        url: "#",
-        icon: <Twitter className="w-4 h-4" />
-      },
-      {
-        platform: "linkedin",
-        url: "#",
-        icon: <Linkedin className="w-4 h-4" />
-      }
-    ]
-  },
-  {
-    name: "Michael Chen",
-    role: "CTO & Lead Engineer",
     imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=500&auto=format&fit=crop",
-    bio: "AI systems architect specializing in LLMs and conversational agents.",
-    socialLinks: [
-      {
-        platform: "linkedin",
-        url: "#",
-        icon: <Linkedin className="w-4 h-4" />
-      },
-      {
-        platform: "facebook",
-        url: "#",
-        icon: <Facebook className="w-4 h-4" />
-      }
-    ]
-  },
-  {
-    name: "Priya Patel",
-    role: "Head of AI Research",
-    imageSrc: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop",
-    bio: "PhD in Machine Learning with expertise in RAG and knowledge retrieval systems.",
+    bio: "Former RIL Project Manager with 10+ years experience leading tech innovation.",
     socialLinks: [
       {
         platform: "twitter",
         url: "#",
         icon: <Twitter className="w-4 h-4" />
       },
-      {
-        platform: "linkedin",
-        url: "#",
-        icon: <Linkedin className="w-4 h-4" />
-      }
-    ]
-  },
-  {
-    name: "David Wilson",
-    role: "VP of Client Solutions",
-    imageSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop",
-    bio: "Business strategist helping enterprises implement AI solutions that drive results.",
-    socialLinks: [
       {
         platform: "linkedin",
         url: "#",
@@ -81,20 +32,20 @@ const team = [
 const testimonials = [
   {
     quote: "ResourceFX AI transformed our customer service with their Voice Agents. The implementation was smooth, and we've seen a 40% increase in customer satisfaction scores.",
-    name: "Jennifer Reyes",
-    title: "CTO, GloboTech Solutions",
+    name: "Rajesh Sharma",
+    title: "CTO, TechVision India",
     imageSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop"
   },
   {
     quote: "Their RAG implementation helped our research team access critical information 5x faster. The custom knowledge base they built is a game-changer for our operations.",
-    name: "Marcus Lee",
-    title: "Research Director, MediNova",
+    name: "Ananya Patel",
+    title: "Research Director, MedIndia",
     imageSrc: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop"
   },
   {
     quote: "Working with ResourceFX AI on our AI strategy provided clarity and direction. Their team's expertise is unmatched, and they delivered beyond our expectations.",
-    name: "Sophia Rodriguez",
-    title: "CEO, Fintech Innovations",
+    name: "Vikram Malhotra",
+    title: "CEO, Bharat Fintech",
     imageSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
   }
 ];
@@ -164,12 +115,12 @@ const About = ({ className }: AboutProps) => {
             subtitle="Our diverse team brings together expertise from artificial intelligence, engineering, business strategy, and user experience design."
           />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="flex justify-center">
             {team.map((member, index) => (
               <TeamMember 
                 key={index}
                 {...member}
-                className={`animate-fade-in delay-[${0.2 * index}s]`}
+                className="animate-fade-in w-full max-w-xs"
               />
             ))}
           </div>
