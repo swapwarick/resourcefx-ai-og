@@ -1,6 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ProjectCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface ProjectCardProps {
   clientName?: string;
   outcome?: string;
   className?: string;
+  slug: string; // Added slug prop for routing
 }
 
 const ProjectCard = ({ 
@@ -17,7 +19,8 @@ const ProjectCard = ({
   imageSrc, 
   clientName, 
   outcome,
-  className 
+  className,
+  slug 
 }: ProjectCardProps) => {
   return (
     <div 
@@ -50,10 +53,13 @@ const ProjectCard = ({
           </div>
         )}
         <div className="mt-6 flex justify-end">
-          <button className="flex items-center text-primary text-sm font-medium">
+          <Link 
+            to={`/case-study/${slug}`} 
+            className="flex items-center text-primary text-sm font-medium group"
+          >
             <span className="mr-2">View Case Study</span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          </Link>
         </div>
       </div>
     </div>

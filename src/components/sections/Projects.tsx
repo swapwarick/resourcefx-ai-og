@@ -16,7 +16,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=500&auto=format&fit=crop",
     clientName: "Global Retail Corp",
     outcome: "Reduced response time by 75% and increased customer satisfaction by 40%",
-    category: "Voice Agents"
+    category: "Voice Agents",
+    slug: "intelligent-customer-support"
   },
   {
     title: "Knowledge Retrieval System",
@@ -24,7 +25,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=500&auto=format&fit=crop",
     clientName: "Legal Services International",
     outcome: "Improved research efficiency by 5x and reduced time-to-insight by 60%",
-    category: "RAG Applications"
+    category: "RAG Applications",
+    slug: "knowledge-retrieval-system"
   },
   {
     title: "Autonomous Content Creation Agent",
@@ -32,7 +34,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=500&auto=format&fit=crop",
     clientName: "MediaMax Agency",
     outcome: "Increased content output by 300% while maintaining quality standards",
-    category: "AI Agents"
+    category: "AI Agents",
+    slug: "autonomous-content-creation"
   },
   {
     title: "Financial Analysis Assistant",
@@ -40,7 +43,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=500&auto=format&fit=crop",
     clientName: "Investment Partners LLC",
     outcome: "Improved portfolio performance by 12% year-over-year",
-    category: "Agentic AI"
+    category: "Agentic AI",
+    slug: "financial-analysis-assistant"
   },
   {
     title: "Healthcare Diagnostic Support System",
@@ -48,7 +52,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=500&auto=format&fit=crop",
     clientName: "National Health Network",
     outcome: "Reduced diagnostic time by 35% and improved accuracy by 22%",
-    category: "Custom AI Solutions"
+    category: "Custom AI Solutions",
+    slug: "healthcare-diagnostic-support"
   },
   {
     title: "AI Strategy & Implementation",
@@ -56,7 +61,8 @@ const projectsData = [
     imageSrc: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=500&auto=format&fit=crop",
     clientName: "Manufacturing Innovations Inc",
     outcome: "Successfully deployed 5 AI initiatives that delivered $2.3M in annual savings",
-    category: "Consulting & Support"
+    category: "Consulting & Support",
+    slug: "ai-strategy-implementation"
   }
 ];
 
