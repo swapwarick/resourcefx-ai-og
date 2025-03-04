@@ -13,12 +13,12 @@ const CaseStudyTemplate = () => {
       outcome="Key outcomes in brief"
       heroImage="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop"
     >
-      <h2>The Challenge</h2>
-      <p>
+      <h2 className="text-white">The Challenge</h2>
+      <p className="text-white">
         Description of the client's challenge or problem they were facing.
       </p>
       
-      <ul>
+      <ul className="text-white">
         <li>Challenge point 1</li>
         <li>Challenge point 2</li>
         <li>Challenge point 3</li>
@@ -29,15 +29,15 @@ const CaseStudyTemplate = () => {
           <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <Database className="w-6 h-6 text-primary teal-glow-text" />
           </div>
-          <h3 className="text-lg font-medium mb-2 text-black-visible">Stat 1</h3>
-          <p className="text-black-visible">Description</p>
+          <h3 className="text-lg font-medium mb-2 text-white">Stat 1</h3>
+          <p className="text-white">Description</p>
         </div>
         
         {/* Add more stat cards as needed */}
       </div>
 
-      <h2>Our Approach</h2>
-      <p>
+      <h2 className="text-white">Our Approach</h2>
+      <p className="text-white">
         Description of the approach taken to solve the problem.
       </p>
 
@@ -49,8 +49,8 @@ const CaseStudyTemplate = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-1 text-black-visible">Step 1</h3>
-            <p className="text-black-visible">
+            <h3 className="text-lg font-medium mb-1 text-white">Step 1</h3>
+            <p className="text-white">
               Description of step 1 in the approach.
             </p>
           </div>
@@ -63,8 +63,8 @@ const CaseStudyTemplate = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-1 text-black-visible">Step 2</h3>
-            <p className="text-black-visible">
+            <h3 className="text-lg font-medium mb-1 text-white">Step 2</h3>
+            <p className="text-white">
               Description of step 2 in the approach.
             </p>
           </div>
@@ -77,20 +77,20 @@ const CaseStudyTemplate = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-lg font-medium mb-1 text-black-visible">Step 3</h3>
-            <p className="text-black-visible">
+            <h3 className="text-lg font-medium mb-1 text-white">Step 3</h3>
+            <p className="text-white">
               Description of step 3 in the approach.
             </p>
           </div>
         </div>
       </div>
 
-      <h2>Implementation</h2>
-      <p>
+      <h2 className="text-white">Implementation</h2>
+      <p className="text-white">
         Description of how the solution was implemented.
       </p>
       
-      <ol>
+      <ol className="text-white">
         <li>
           <strong>Phase 1:</strong> Description of phase 1.
         </li>
@@ -108,55 +108,55 @@ const CaseStudyTemplate = () => {
         className="my-10 rounded-xl w-full h-auto shadow-xl"
       />
 
-      <h2>Results & Impact</h2>
-      <p>
+      <h2 className="text-white">Results & Impact</h2>
+      <p className="text-white">
         Description of the results and impact of the implementation.
       </p>
 
       <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="glass-card p-6">
-          <h3 className="text-lg font-medium mb-4 text-black-visible">Quantitative Results</h3>
+          <h3 className="text-lg font-medium mb-4 text-white">Quantitative Results</h3>
           <ul className="space-y-3">
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Result 1</span>
+              <span className="text-white">Result 1</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Result 2</span>
+              <span className="text-white">Result 2</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Result 3</span>
+              <span className="text-white">Result 3</span>
             </li>
           </ul>
         </div>
         
         <div className="glass-card p-6">
-          <h3 className="text-lg font-medium mb-4 text-black-visible">Qualitative Benefits</h3>
+          <h3 className="text-lg font-medium mb-4 text-white">Qualitative Benefits</h3>
           <ul className="space-y-3">
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Benefit 1</span>
+              <span className="text-white">Benefit 1</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Benefit 2</span>
+              <span className="text-white">Benefit 2</span>
             </li>
             <li className="flex items-start">
               <span className="text-primary mr-2">→</span>
-              <span className="text-black-visible">Benefit 3</span>
+              <span className="text-white">Benefit 3</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <h2>Future Developments</h2>
-      <p>
+      <h2 className="text-white">Future Developments</h2>
+      <p className="text-white">
         Description of potential future developments.
       </p>
       
-      <ul>
+      <ul className="text-white">
         <li>Future development 1</li>
         <li>Future development 2</li>
         <li>Future development 3</li>

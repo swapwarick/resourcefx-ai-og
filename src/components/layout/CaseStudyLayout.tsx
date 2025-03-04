@@ -66,7 +66,7 @@ const CaseStudyLayout = ({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Content */}
           <div className="lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg max-w-none prose-invert">
               {children}
             </div>
           </div>
@@ -74,14 +74,14 @@ const CaseStudyLayout = ({
           {/* Sidebar */}
           <div className="space-y-8">
             <div className="glass-card p-6">
-              <h3 className="text-xl font-semibold mb-6 text-black">Project Details</h3>
+              <h3 className="text-xl font-semibold mb-6 text-white">Project Details</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start">
                   <Users className="w-5 h-5 text-primary mt-1 mr-3" />
                   <div>
-                    <h4 className="font-medium text-black">Client</h4>
-                    <p className="text-black">{client}</p>
+                    <h4 className="font-medium text-white">Client</h4>
+                    <p className="text-white">{client}</p>
                   </div>
                 </div>
                 
@@ -89,8 +89,8 @@ const CaseStudyLayout = ({
                   <div className="flex items-start">
                     <Clock className="w-5 h-5 text-primary mt-1 mr-3" />
                     <div>
-                      <h4 className="font-medium text-black">Duration</h4>
-                      <p className="text-black">{duration}</p>
+                      <h4 className="font-medium text-white">Duration</h4>
+                      <p className="text-white">{duration}</p>
                     </div>
                   </div>
                 )}
@@ -99,8 +99,8 @@ const CaseStudyLayout = ({
                   <div className="flex items-start">
                     <Users className="w-5 h-5 text-primary mt-1 mr-3" />
                     <div>
-                      <h4 className="font-medium text-black">Team</h4>
-                      <p className="text-black">{team}</p>
+                      <h4 className="font-medium text-white">Team</h4>
+                      <p className="text-white">{team}</p>
                     </div>
                   </div>
                 )}
@@ -108,16 +108,16 @@ const CaseStudyLayout = ({
                 <div className="flex items-start">
                   <Trophy className="w-5 h-5 text-primary mt-1 mr-3 teal-glow-text" />
                   <div>
-                    <h4 className="font-medium text-black">Outcome</h4>
-                    <p className="text-black">{outcome}</p>
+                    <h4 className="font-medium text-white">Outcome</h4>
+                    <p className="text-white">{outcome}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="glass-card p-6">
-              <h3 className="text-xl font-semibold mb-4 text-black">Need a similar solution?</h3>
-              <p className="text-black mb-4">We can help you implement a customized AI solution for your specific needs.</p>
+              <h3 className="text-xl font-semibold mb-4 text-white">Need a similar solution?</h3>
+              <p className="text-white mb-4">We can help you implement a customized AI solution for your specific needs.</p>
               <Link 
                 to="/#contact"
                 className="btn-primary teal-glow w-full text-center"
