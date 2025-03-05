@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -31,6 +32,24 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>ResourceFX AI - Leading AI Agency for Enterprise Solutions</title>
+        <meta name="description" content="ResourceFX AI is a premier AI agency specializing in RAG applications, Agentic AI, voice agents, and custom AI solutions that drive business transformation." />
+        <meta name="keywords" content="AI agency, RAG applications, agentic AI, voice agents, enterprise AI, AI consulting, artificial intelligence" />
+        <link rel="canonical" href="https://resourcefx.ai/" />
+        
+        {/* Schema.org markup for homepage */}
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://resourcefx.ai/",
+            "name": "ResourceFX AI",
+            "description": "Leading AI agency specializing in RAG applications, Agentic AI, AI agents, Voice Agents, and custom AI solutions."
+          }
+        `}</script>
+      </Helmet>
+      
       <Navbar />
       
       <main>
