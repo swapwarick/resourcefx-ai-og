@@ -1,3 +1,4 @@
+
 import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import TeamMember from "../ui/TeamMember";
@@ -57,8 +58,8 @@ const About = ({ className }: AboutProps) => {
     >
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl animate-float" style={{ animationDelay: "1s" }}></div>
       </div>
 
       <div className="container mx-auto px-6">
@@ -69,14 +70,14 @@ const About = ({ className }: AboutProps) => {
         
         {/* Mission & Vision */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
-          <div className="glass-card p-8 animate-fade-in">
+          <div className="glass-card p-8 animate-fade-in hover-lift">
             <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
             <p className="text-muted-foreground mb-6">
               To democratize cutting-edge AI technology by creating solutions that are powerful, ethical, and accessible to businesses of all sizes, enabling them to innovate and thrive in a rapidly evolving digital landscape.
             </p>
             <ul className="space-y-2">
               {["Client-focused solutions", "Ethical AI development", "Continuous innovation", "Business-driven results"].map((item, i) => (
-                <li key={i} className="flex items-start">
+                <li key={i} className="flex items-start animate-slide-in" style={{ animationDelay: `${0.2 + (i * 0.1)}s` }}>
                   <svg className="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -86,14 +87,14 @@ const About = ({ className }: AboutProps) => {
             </ul>
           </div>
           
-          <div className="glass-card p-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="glass-card p-8 animate-fade-in hover-lift" style={{ animationDelay: "0.2s" }}>
             <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
             <p className="text-muted-foreground mb-6">
               To become the global leader in practical AI implementation, known for creating intelligent solutions that solve real-world business challenges while advancing the capabilities of artificial intelligence.
             </p>
             <ul className="space-y-2">
               {["AI that enhances human potential", "Sustainable technology adoption", "Industry-specific expertise", "Long-term client partnerships"].map((item, i) => (
-                <li key={i} className="flex items-start">
+                <li key={i} className="flex items-start animate-slide-in" style={{ animationDelay: `${0.4 + (i * 0.1)}s` }}>
                   <svg className="w-5 h-5 text-primary mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
@@ -105,7 +106,7 @@ const About = ({ className }: AboutProps) => {
         </div>
         
         {/* Our Team */}
-        <div className="mb-20">
+        <div className="mb-20 animate-fade-in" style={{ animationDelay: "0.5s" }}>
           <SectionHeading 
             title="Meet Our Team" 
             subtitle="Our diverse team brings together expertise from artificial intelligence, engineering, business strategy, and user experience design."
@@ -116,14 +117,15 @@ const About = ({ className }: AboutProps) => {
               <TeamMember 
                 key={index}
                 {...member}
-                className="animate-fade-in w-full max-w-xs"
+                className="animate-scale-in w-full max-w-xs"
+                style={{ animationDelay: `${0.6 + (index * 0.2)}s` }}
               />
             ))}
           </div>
         </div>
         
         {/* Testimonials */}
-        <div>
+        <div className="animate-fade-in" style={{ animationDelay: "0.7s" }}>
           <SectionHeading 
             title="Client Testimonials" 
             subtitle="Don't just take our word for it. Here's what our clients have to say about working with ResourceFX AI."
@@ -133,8 +135,8 @@ const About = ({ className }: AboutProps) => {
             {testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
-                className={`glass-card p-8 flex flex-col animate-fade-in`}
-                style={{ animationDelay: `${0.2 * index}s` }}
+                className="glass-card p-8 flex flex-col animate-scale-in hover-lift"
+                style={{ animationDelay: `${0.9 + (index * 0.2)}s` }}
               >
                 <div className="mb-6">
                   {[...Array(5)].map((_, i) => (

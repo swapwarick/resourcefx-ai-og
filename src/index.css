@@ -147,11 +147,12 @@
 
 /* For custom interactions and animations */
 .hover-lift {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .hover-lift:hover {
   transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Ensure image display quality */

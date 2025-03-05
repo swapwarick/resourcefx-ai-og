@@ -94,7 +94,7 @@ const Projects = ({ className }: ProjectsProps) => {
     <section 
       id="projects" 
       className={cn(
-        "py-20 relative clip-diagonal-reverse",
+        "py-20 relative",
         className
       )}
     >
