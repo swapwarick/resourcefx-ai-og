@@ -8,6 +8,10 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import IntelligentCustomerSupport from "./pages/case-studies/IntelligentCustomerSupport";
 import KnowledgeRetrievalSystem from "./pages/case-studies/KnowledgeRetrievalSystem";
+import AutonomousContentCreation from "./pages/case-studies/AutonomousContentCreation";
+import FinancialAnalysisAssistant from "./pages/case-studies/FinancialAnalysisAssistant";
+import HealthcareDiagnosticSupport from "./pages/case-studies/HealthcareDiagnosticSupport";
+import AIStrategyImplementation from "./pages/case-studies/AIStrategyImplementation";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +27,10 @@ const App = () => (
           {/* Case Study Routes */}
           <Route path="/case-study/intelligent-customer-support" element={<IntelligentCustomerSupport />} />
           <Route path="/case-study/knowledge-retrieval-system" element={<KnowledgeRetrievalSystem />} />
+          <Route path="/case-study/autonomous-content-creation" element={<AutonomousContentCreation />} />
+          <Route path="/case-study/financial-analysis-assistant" element={<FinancialAnalysisAssistant />} />
+          <Route path="/case-study/healthcare-diagnostic-support" element={<HealthcareDiagnosticSupport />} />
+          <Route path="/case-study/ai-strategy-implementation" element={<AIStrategyImplementation />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
