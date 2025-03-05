@@ -14,6 +14,7 @@ interface TeamMemberProps {
   bio: string;
   socialLinks?: SocialLink[];
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const TeamMember = ({ 
@@ -22,7 +23,8 @@ const TeamMember = ({
   imageSrc, 
   bio,
   socialLinks,
-  className 
+  className,
+  style
 }: TeamMemberProps) => {
   return (
     <div 
@@ -30,6 +32,7 @@ const TeamMember = ({
         "glass-card overflow-hidden hover-lift transition-all duration-300",
         className
       )}
+      style={style}
     >
       <div className="aspect-square overflow-hidden">
         <img 
