@@ -12,7 +12,7 @@ const team = [
   {
     name: "Swapnil Netankar",
     role: "CEO & AI Strategist",
-    imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=500&auto=format&fit=crop",
+    imageSrc: "/lovable-uploads/3c383cec-78c0-4d8d-86ad-c41816c19880.png",
     bio: "Former RIL Project Manager with 10+ years experience leading tech innovation.",
     socialLinks: [
       {
