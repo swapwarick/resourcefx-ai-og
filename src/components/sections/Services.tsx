@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import SectionHeading from "../ui/SectionHeading";
 import ServiceCard from "../ui/ServiceCard";
@@ -82,7 +81,7 @@ const Services = ({ className }: ServicesProps) => {
     <section 
       id="services" 
       className={cn(
-        "py-20 bg-secondary/50 clip-diagonal",
+        "py-20 bg-secondary/50",
         className
       )}
     >
@@ -101,7 +100,6 @@ const Services = ({ className }: ServicesProps) => {
               icon={service.icon}
               features={service.features}
               className={`animate-fade-in ${index % 2 === 0 ? 'orange-glow' : ''}`}
-              // Removing style prop that was causing the error
             />
           ))}
         </div>

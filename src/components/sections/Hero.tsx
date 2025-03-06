@@ -87,7 +87,7 @@ const Hero = ({ className }: HeroProps) => {
               </div>
               <div>
                 <p className="text-xs font-medium">New Users</p>
-                <p className="text-xs text-muted-foreground">2,345 This Month</p>
+                <p className="text-xs text-muted-foreground">42 This Month</p>
               </div>
             </div>
           </div>
