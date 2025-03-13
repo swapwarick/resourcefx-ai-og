@@ -1,14 +1,14 @@
 
 import { useState, useRef, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
-import * as pdfjs from 'pdfjs-dist';
+import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 import { pipeline } from "@xenova/transformers";
 import localforage from "localforage";
 import { chunkText } from "../utils/textProcessing";
 import { Message } from "../types";
 
 // Initialize PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.js`;
 
 // Initialize localforage instance for vector storage
 const vectorStore = localforage.createInstance({
@@ -77,7 +77,7 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
     try {
       // Read the PDF file
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
+      const pdf = await getDocument({ data: arrayBuffer }).promise;
       
       let fullText = "";
       
@@ -89,6 +89,11 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
           .map((item: any) => item.str)
           .join(" ");
         fullText += pageText + " ";
+      }
+
+      // Check if we actually extracted any meaningful text
+      if (fullText.trim().length === 0) {
+        throw new Error("No text content could be extracted from this PDF.");
       }
 
       setDocumentContent(fullText);
@@ -123,7 +128,7 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
       console.error("Error processing PDF:", error);
       toast({
         title: "Error processing PDF",
-        description: "Failed to extract text from the PDF file.",
+        description: error instanceof Error ? error.message : "Failed to extract text from the PDF file.",
         variant: "destructive",
       });
     } finally {

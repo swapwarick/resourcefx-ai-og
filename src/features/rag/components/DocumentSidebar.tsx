@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { BookOpen, FileText, Upload, Trash2, Loader2 } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface DocumentSidebarProps {
   file: File | null;
@@ -85,6 +86,14 @@ const DocumentSidebar = ({
               </>
             )}
           </Button>
+          {file && chunks.length === 0 && !isProcessing && (
+            <Alert variant="destructive" className="mt-2">
+              <AlertDescription>
+                Some PDF files may be protected, scanned as images, or have other features that prevent text extraction. 
+                Try a different PDF that contains selectable text.
+              </AlertDescription>
+            </Alert>
+          )}
           {(chunks.length > 0) && (
             <Button
               variant="outline"
