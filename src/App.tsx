@@ -13,6 +13,7 @@ import AutonomousContentCreation from "./pages/case-studies/AutonomousContentCre
 import FinancialAnalysisAssistant from "./pages/case-studies/FinancialAnalysisAssistant";
 import HealthcareDiagnosticSupport from "./pages/case-studies/HealthcareDiagnosticSupport";
 import AIStrategyImplementation from "./pages/case-studies/AIStrategyImplementation";
+import RagApplication from "./pages/RagApplication";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,9 @@ const App = () => (
             <Route path="/case-study/financial-analysis-assistant" element={<FinancialAnalysisAssistant />} />
             <Route path="/case-study/healthcare-diagnostic-support" element={<HealthcareDiagnosticSupport />} />
             <Route path="/case-study/ai-strategy-implementation" element={<AIStrategyImplementation />} />
+            
+            {/* RAG Application Route */}
+            <Route path="/rag-application" element={<RagApplication />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

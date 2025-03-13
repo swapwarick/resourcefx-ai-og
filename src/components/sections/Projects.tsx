@@ -4,6 +4,8 @@ import SectionHeading from "../ui/SectionHeading";
 import ProjectCard from "../ui/ProjectCard";
 import { useState } from "react";
 import { Building, Factory, Flag, FlagTriangleRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "../ui/button";
 
 interface ProjectsProps {
   className?: string;
@@ -136,6 +138,15 @@ const Projects = ({ className }: ProjectsProps) => {
               className={`animate-fade-in delay-[${0.1 * index}s]`}
             />
           ))}
+        </div>
+        
+        {/* RAG Application Demo Link */}
+        <div className="mt-12 flex justify-center">
+          <Link to="/rag-application">
+            <Button size="lg" className="bg-primary hover:bg-primary/90">
+              Try Our RAG Application Demo
+            </Button>
+          </Link>
         </div>
         
         {/* Client Logos */}
