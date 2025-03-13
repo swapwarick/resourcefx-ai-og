@@ -77,10 +77,10 @@ const categories = [
 ];
 
 const companyLogos = [
-  { name: "RIL", icon: <Building className="w-8 h-8" /> },
-  { name: "TATA", icon: <Flag className="w-8 h-8" /> },
-  { name: "OLA", icon: <Factory className="w-8 h-8" /> },
-  { name: "Zepto", icon: <FlagTriangleRight className="w-8 h-8" /> }
+  { name: "RIL", icon: <Building className="w-10 h-10 text-primary" /> },
+  { name: "TATA", icon: <Flag className="w-10 h-10 text-primary" /> },
+  { name: "OLA", icon: <Factory className="w-10 h-10 text-primary" /> },
+  { name: "Zepto", icon: <FlagTriangleRight className="w-10 h-10 text-primary" /> }
 ];
 
 const Projects = ({ className }: ProjectsProps) => {
@@ -144,7 +144,7 @@ const Projects = ({ className }: ProjectsProps) => {
           <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-10">
             {companyLogos.map((company, i) => (
               <div key={i} className="flex flex-col items-center justify-center opacity-80 hover:opacity-100 transition-all duration-300">
-                <div className="bg-white/10 p-4 rounded-full mb-2 teal-glow">
+                <div className="bg-white/10 p-5 rounded-full mb-2 hover:bg-primary/10 transition-all duration-300 border border-primary/20">
                   {company.icon}
                 </div>
                 <span className="text-sm font-medium">{company.name}</span>
