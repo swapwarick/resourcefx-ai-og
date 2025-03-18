@@ -20,6 +20,7 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
   // Send message to Groq API
   const sendToGroq = async (userMessage: string, context: string) => {
     try {
+      console.log("Sending to Groq API with context length:", context.length);
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -46,10 +47,12 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
       });
 
       if (!response.ok) {
+        console.error(`API request failed with status ${response.status}`);
         throw new Error(`API request failed with status ${response.status}`);
       }
 
       const data = await response.json();
+      console.log("Received response from Groq API");
       return data.choices[0].message.content;
     } catch (error) {
       console.error("Error calling Groq API:", error);
@@ -67,8 +70,11 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
     setIsSending(true);
 
     try {
+      console.log("Finding relevant chunks for query:", userMessage);
       // Find relevant document chunks
       const relevantChunks = await findRelevantChunks(userMessage, extractor, chunks, embeddings);
+      console.log(`Found ${relevantChunks.length} relevant chunks`);
+      
       const context = relevantChunks.join("\n\n");
 
       // Get response from Groq

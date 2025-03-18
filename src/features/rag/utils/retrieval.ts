@@ -26,16 +26,25 @@ export const findRelevantChunks = async (
   topK: number = 3
 ): Promise<string[]> => {
   if (!extractor || embeddings.length === 0 || chunks.length === 0) {
+    console.log("Missing required components for retrieval", {
+      hasExtractor: !!extractor,
+      embeddingsLength: embeddings.length,
+      chunksLength: chunks.length
+    });
     return [];
   }
 
   try {
+    console.log("Creating query embedding...");
     // Create query embedding
-    const queryEmbedding = await extractor(query, { pooling: "mean", normalize: true });
+    const queryEmbeddingOutput = await extractor(query, { pooling: "mean", normalize: true });
+    const queryEmbedding = queryEmbeddingOutput.tolist ? queryEmbeddingOutput.tolist()[0] : queryEmbeddingOutput.data;
+    
+    console.log("Query embedding created, calculating similarities...");
     
     // Calculate similarities
     const similarities = embeddings.map((embedding) => 
-      cosineSimilarity(queryEmbedding.data, embedding)
+      cosineSimilarity(queryEmbedding, embedding)
     );
     
     // Get indices of top K similar chunks
@@ -44,6 +53,8 @@ export const findRelevantChunks = async (
       .sort((a, b) => b.score - a.score)
       .slice(0, topK)
       .map(item => item.index);
+    
+    console.log("Found top relevant chunks:", topIndices);
     
     // Return the top K chunks
     return topIndices.map(index => chunks[index]);

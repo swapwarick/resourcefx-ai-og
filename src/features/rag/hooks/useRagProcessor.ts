@@ -2,7 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
-import { pipeline } from "@xenova/transformers";
+import { pipeline } from "@huggingface/transformers";
 import localforage from "localforage";
 import { chunkText } from "../utils/textProcessing";
 import { Message } from "../types";
@@ -34,10 +34,14 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
   useEffect(() => {
     const loadModel = async () => {
       try {
+        console.log("Loading embedding model...");
+        // Using a more reliable model from Hugging Face
         const embeddingExtractor = await pipeline(
           "feature-extraction",
-          "Xenova/all-MiniLM-L6-v2"
+          "mixedbread-ai/mxbai-embed-xsmall-v1", 
+          { revision: "main" }
         );
+        console.log("Embedding model loaded successfully");
         setExtractor(embeddingExtractor);
       } catch (error) {
         console.error("Error loading embedding model:", error);
@@ -75,27 +79,38 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
 
     setIsProcessing(true);
     try {
+      console.log("Starting PDF processing...");
       // Read the PDF file
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await getDocument({ data: arrayBuffer }).promise;
+      console.log("PDF loaded into memory, size:", arrayBuffer.byteLength);
+      
+      const loadingTask = getDocument({ data: arrayBuffer });
+      const pdf = await loadingTask.promise;
+      
+      console.log("PDF document loaded, pages:", pdf.numPages);
       
       let fullText = "";
       
       // Extract text from each page
       for (let i = 1; i <= pdf.numPages; i++) {
+        console.log(`Processing page ${i}/${pdf.numPages}...`);
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
         const pageText = textContent.items
           .map((item: any) => item.str)
           .join(" ");
+        
+        console.log(`Page ${i}: extracted ${pageText.length} characters`);
         fullText += pageText + " ";
       }
 
       // Check if we actually extracted any meaningful text
       if (fullText.trim().length === 0) {
-        throw new Error("No text content could be extracted from this PDF.");
+        console.error("No text content could be extracted from the PDF");
+        throw new Error("No text content could be extracted from this PDF. The file may be scanned images or protected.");
       }
 
+      console.log("Total text extracted:", fullText.length, "characters");
       setDocumentContent(fullText);
       toast({
         title: "PDF processed successfully",
@@ -103,20 +118,34 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
       });
 
       // Chunk the document
+      console.log("Chunking document...");
       const textChunks = chunkText(fullText, 512);
+      console.log(`Created ${textChunks.length} chunks`);
       setChunks(textChunks);
 
       // Create embeddings for each chunk
+      console.log("Creating embeddings...");
       const chunkEmbeddings = await Promise.all(
-        textChunks.map(async (chunk) => {
-          const output = await extractor(chunk, { pooling: "mean", normalize: true });
-          return output.data;
+        textChunks.map(async (chunk, index) => {
+          console.log(`Processing embedding for chunk ${index + 1}/${textChunks.length}`);
+          try {
+            const output = await extractor(chunk, { 
+              pooling: "mean", 
+              normalize: true 
+            });
+            return output.tolist ? output.tolist()[0] : output.data;
+          } catch (err) {
+            console.error(`Error creating embedding for chunk ${index}:`, err);
+            throw new Error(`Failed to create embedding for chunk ${index}`);
+          }
         })
       );
 
+      console.log("Embeddings created successfully");
       setEmbeddings(chunkEmbeddings);
 
       // Store embeddings and chunks
+      console.log("Storing data in localforage...");
       await vectorStore.setItem("documentChunks", textChunks);
       await vectorStore.setItem("documentEmbeddings", chunkEmbeddings);
 
@@ -187,6 +216,5 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
     handleFileChange,
     handleUploadAndProcess,
     handleReset,
-    processPdf
   };
 };
