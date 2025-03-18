@@ -1,17 +1,15 @@
+
 import { useState, useRef, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import * as pdfjsLib from "pdfjs-dist";
-import { GlobalWorkerOptions } from "pdfjs-dist/build/pdf";
-import { pipeline } from "@huggingface/transformers";
-import localforage from "localforage";
 import { chunkText } from "../utils/textProcessing";
 import { Message } from "../types";
+import localforage from "localforage";
+import { pipeline } from "@huggingface/transformers";
 
-// Initialize PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.js',
-  import.meta.url
-).toString();
+// Initialize PDF.js worker properly
+// The issue was with how we were setting the worker URL
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 // Initialize localforage instance for vector storage
 const vectorStore = localforage.createInstance({
