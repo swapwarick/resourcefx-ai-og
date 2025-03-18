@@ -1,20 +1,11 @@
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import * as pdfjsLib from "pdfjs-dist";
 import { chunkText } from "../utils/textProcessing";
 import { Message } from "../types";
-import localforage from "localforage";
-import { pipeline } from "@huggingface/transformers";
-
-// Initialize PDF.js worker properly
-// The issue was with how we were setting the worker URL
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-
-// Initialize localforage instance for vector storage
-const vectorStore = localforage.createInstance({
-  name: "ragVectorStore"
-});
+import { useFileHandler } from "./useFileHandler";
+import { useEmbeddings, vectorStore } from "./useEmbeddings";
+import { usePdfProcessor } from "./usePdfProcessor";
 
 interface UseRagProcessorProps {
   setDocumentContent: (content: string) => void;
@@ -22,55 +13,14 @@ interface UseRagProcessorProps {
 }
 
 export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProcessorProps) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState<string>("");
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [embeddings, setEmbeddings] = useState<number[][]>([]);
   const [chunks, setChunks] = useState<string[]>([]);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [extractor, setExtractor] = useState<any>(null);
-
-  // Initialize the embedding model
-  useEffect(() => {
-    const loadModel = async () => {
-      try {
-        console.log("Loading embedding model...");
-        const embeddingExtractor = await pipeline(
-          "feature-extraction",
-          "mixedbread-ai/mxbai-embed-xsmall-v1"
-        );
-        console.log("Embedding model loaded successfully");
-        setExtractor(embeddingExtractor);
-      } catch (error) {
-        console.error("Error loading embedding model:", error);
-        toast({
-          title: "Error loading embedding model",
-          description: "Failed to initialize the text embedding model.",
-          variant: "destructive",
-        });
-      }
-    };
-
-    loadModel();
-  }, []);
-
-  // Handle file upload
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const selectedFile = e.target.files[0];
-      if (selectedFile.type !== "application/pdf") {
-        toast({
-          title: "Invalid file type",
-          description: "Please upload a PDF file.",
-          variant: "destructive",
-        });
-        return;
-      }
-      setFile(selectedFile);
-      setFileName(selectedFile.name);
-    }
-  };
+  
+  const { file, fileName, fileInputRef, handleFileChange, handleReset: resetFile } = useFileHandler();
+  const { extractor } = useEmbeddings();
+  const { extractTextFromPdf } = usePdfProcessor();
 
   // Process PDF file
   const processPdf = async () => {
@@ -78,42 +28,13 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
 
     setIsProcessing(true);
     try {
-      console.log("Starting PDF processing...");
-      // Read the PDF file
-      const arrayBuffer = await file.arrayBuffer();
-      console.log("PDF loaded into memory, size:", arrayBuffer.byteLength);
+      const fullText = await extractTextFromPdf(file);
       
-      const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-      const pdf = await loadingTask.promise;
-      
-      console.log("PDF document loaded, pages:", pdf.numPages);
-      
-      let fullText = "";
-      
-      // Extract text from each page
-      for (let i = 1; i <= pdf.numPages; i++) {
-        console.log(`Processing page ${i}/${pdf.numPages}...`);
-        const page = await pdf.getPage(i);
-        const textContent = await page.getTextContent();
-        const pageText = textContent.items
-          .map((item: any) => item.str)
-          .join(" ");
-        
-        console.log(`Page ${i}: extracted ${pageText.length} characters`);
-        fullText += pageText + " ";
-      }
-
-      // Check if we actually extracted any meaningful text
-      if (fullText.trim().length === 0) {
-        console.error("No text content could be extracted from the PDF");
-        throw new Error("No text content could be extracted from this PDF. The file may be scanned images or protected.");
-      }
-
       console.log("Total text extracted:", fullText.length, "characters");
       setDocumentContent(fullText);
       toast({
         title: "PDF processed successfully",
-        description: `Extracted ${fullText.length} characters from ${pdf.numPages} pages.`,
+        description: `Extracted ${fullText.length} characters.`,
       });
 
       // Chunk the document
@@ -166,15 +87,11 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
 
   // Reset the application
   const handleReset = () => {
-    setFile(null);
-    setFileName("");
+    resetFile();
     setDocumentContent("");
     setEmbeddings([]);
     setChunks([]);
     setMessages([]);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
   };
 
   // Handle upload and process
