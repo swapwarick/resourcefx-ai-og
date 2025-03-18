@@ -1,14 +1,17 @@
-
 import { useState, useRef, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
-import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
+import * as pdfjsLib from "pdfjs-dist";
+import { GlobalWorkerOptions } from "pdfjs-dist/build/pdf";
 import { pipeline } from "@huggingface/transformers";
 import localforage from "localforage";
 import { chunkText } from "../utils/textProcessing";
 import { Message } from "../types";
 
 // Initialize PDF.js worker
-GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js',
+  import.meta.url
+).toString();
 
 // Initialize localforage instance for vector storage
 const vectorStore = localforage.createInstance({
@@ -35,11 +38,9 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
     const loadModel = async () => {
       try {
         console.log("Loading embedding model...");
-        // Using a more reliable model from Hugging Face
         const embeddingExtractor = await pipeline(
           "feature-extraction",
-          "mixedbread-ai/mxbai-embed-xsmall-v1", 
-          { revision: "main" }
+          "mixedbread-ai/mxbai-embed-xsmall-v1"
         );
         console.log("Embedding model loaded successfully");
         setExtractor(embeddingExtractor);
@@ -84,7 +85,7 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
       const arrayBuffer = await file.arrayBuffer();
       console.log("PDF loaded into memory, size:", arrayBuffer.byteLength);
       
-      const loadingTask = getDocument({ data: arrayBuffer });
+      const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
       const pdf = await loadingTask.promise;
       
       console.log("PDF document loaded, pages:", pdf.numPages);
@@ -157,7 +158,7 @@ export const useRagProcessor = ({ setDocumentContent, setMessages }: UseRagProce
       console.error("Error processing PDF:", error);
       toast({
         title: "Error processing PDF",
-        description: error instanceof Error ? error.message : "Failed to extract text from the PDF file.",
+        description: error instanceof Error ? error.message : "Failed to extract text from the PDF file. The file might be protected or contain only images.",
         variant: "destructive",
       });
     } finally {
