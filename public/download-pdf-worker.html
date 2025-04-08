@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download PDF.js Worker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .step {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>PDF.js Worker Setup Instructions</h1>
+  
+  <div class="step">
+    <h2>Step 1: Download the PDF.js Worker</h2>
+    <p>Download the PDF.js worker file from the CDN:</p>
+    <p><a href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.js" download="pdf.worker.min.js">Download pdf.worker.min.js</a></p>
+  </div>
+  
+  <div class="step">
+    <h2>Step 2: Place the Worker File</h2>
+    <p>Save the downloaded file to the public folder of your project. The file should be at:</p>
+    <pre>/public/pdf.worker.min.js</pre>
+  </div>
+  
+  <div class="step">
+    <h2>Step 3: Restart the Development Server</h2>
+    <p>After placing the file, restart your development server to ensure the worker is properly served.</p>
+  </div>
+</body>
+</html>
