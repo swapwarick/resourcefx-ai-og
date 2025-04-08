@@ -2,6 +2,7 @@
 import { useState } from "react";
 import DocumentSidebar from "./components/DocumentSidebar";
 import ChatPanel from "./components/ChatPanel";
+import ApiKeySettings from "./components/ApiKeySettings";
 import { useRagProcessor } from "./hooks/useRagProcessor";
 import { useRagChat } from "./hooks/useRagChat";
 import { Message } from "./types";
@@ -43,7 +44,10 @@ const RagApplication = () => {
     <div className="min-h-screen bg-background py-12">
       <Toaster />
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-8 text-center">Chat with Your PDF</h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-bold">Chat with Your PDF</h1>
+          <ApiKeySettings />
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* Left sidebar - Document info */}

@@ -14,6 +14,10 @@ export const cosineSimilarity = (vecA: number[], vecB: number[]): number => {
   normA = Math.sqrt(normA);
   normB = Math.sqrt(normB);
   
+  if (normA === 0 || normB === 0) {
+    return 0;
+  }
+  
   return dotProduct / (normA * normB);
 };
 
@@ -23,7 +27,7 @@ export const findRelevantChunks = async (
   extractor: any, 
   chunks: string[], 
   embeddings: number[][], 
-  topK: number = 3
+  topK: number = 5
 ): Promise<string[]> => {
   if (!extractor || embeddings.length === 0 || chunks.length === 0) {
     console.log("Missing required components for retrieval", {
@@ -47,14 +51,17 @@ export const findRelevantChunks = async (
       cosineSimilarity(queryEmbedding, embedding)
     );
     
-    // Get indices of top K similar chunks
+    // Get indices of top K similar chunks with threshold
+    const threshold = 0.5; // Minimum similarity score
     const topIndices = similarities
       .map((score, index) => ({ score, index }))
+      .filter(item => item.score > threshold)
       .sort((a, b) => b.score - a.score)
       .slice(0, topK)
       .map(item => item.index);
     
-    console.log("Found top relevant chunks:", topIndices);
+    console.log("Found top relevant chunks:", topIndices, "with scores:", 
+      topIndices.map(index => similarities[index]));
     
     // Return the top K chunks
     return topIndices.map(index => chunks[index]);

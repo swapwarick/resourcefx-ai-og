@@ -17,18 +17,20 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
   const [isSending, setIsSending] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Send message to Groq API
-  const sendToGroq = async (userMessage: string, context: string) => {
+  // Send message to API
+  const sendToLLM = async (userMessage: string, context: string) => {
     try {
-      console.log("Sending to Groq API with context length:", context.length);
-      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      console.log("Sending to AI API with context length:", context.length);
+      
+      // Using OpenAI API
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer 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`
+          "Authorization": `Bearer ${localStorage.getItem('openai_api_key') || ''}`
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
+          model: "gpt-3.5-turbo",
           messages: [
             {
               role: "system",
@@ -38,11 +40,11 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
               
               Context: ${context}`
             },
-            ...messages,
+            ...messages.slice(-5), // Include last 5 messages for continuity
             { role: "user", content: userMessage }
           ],
           temperature: 0.3,
-          max_tokens: 1024
+          max_tokens: 500
         })
       });
 
@@ -52,10 +54,10 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
       }
 
       const data = await response.json();
-      console.log("Received response from Groq API");
+      console.log("Received response from API");
       return data.choices[0].message.content;
     } catch (error) {
-      console.error("Error calling Groq API:", error);
+      console.error("Error calling API:", error);
       throw error;
     }
   };
@@ -75,12 +77,27 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
       const relevantChunks = await findRelevantChunks(userMessage, extractor, chunks, embeddings);
       console.log(`Found ${relevantChunks.length} relevant chunks`);
       
+      if (relevantChunks.length === 0) {
+        setMessages(prev => [...prev, { 
+          role: "assistant", 
+          content: "I couldn't find relevant information in the document to answer your question. Could you rephrase or ask something else about the document?" 
+        }]);
+        return;
+      }
+      
       const context = relevantChunks.join("\n\n");
 
-      // Get response from Groq
-      const assistantResponse = await sendToGroq(userMessage, context);
-      
-      setMessages(prev => [...prev, { role: "assistant", content: assistantResponse }]);
+      // Get response from LLM
+      const apiKey = localStorage.getItem('openai_api_key');
+      if (!apiKey) {
+        setMessages(prev => [...prev, { 
+          role: "assistant", 
+          content: "Please set your OpenAI API key in the settings to enable question answering." 
+        }]);
+      } else {
+        const assistantResponse = await sendToLLM(userMessage, context);
+        setMessages(prev => [...prev, { role: "assistant", content: assistantResponse }]);
+      }
     } catch (error) {
       console.error("Error sending message:", error);
       toast({
@@ -91,10 +108,14 @@ export const useRagChat = ({ messages, setMessages, chunks, embeddings, extracto
       // Add error message to the chat
       setMessages(prev => [...prev, { 
         role: "assistant", 
-        content: "Sorry, I encountered an error while processing your request. Please try again."
+        content: "Sorry, I encountered an error while processing your request. Please try again or check your API key settings."
       }]);
     } finally {
       setIsSending(false);
+      // Scroll to bottom
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 

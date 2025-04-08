@@ -3,8 +3,10 @@ import { RefObject } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { BookOpen, Send, Loader2 } from "lucide-react";
+import { BookOpen, Send, Loader2, AlertTriangle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Message } from "../types";
+import { useEffect, useState } from "react";
 
 interface ChatPanelProps {
   messages: Message[];
@@ -25,12 +27,39 @@ const ChatPanel = ({
   setInput,
   handleSendMessage
 }: ChatPanelProps) => {
+  const [hasApiKey, setHasApiKey] = useState(false);
+  
+  useEffect(() => {
+    const checkApiKey = () => {
+      const apiKey = localStorage.getItem('openai_api_key');
+      setHasApiKey(!!apiKey && apiKey.trim() !== '');
+    };
+    
+    checkApiKey();
+    
+    // Listen for storage events
+    window.addEventListener('storage', checkApiKey);
+    
+    return () => {
+      window.removeEventListener('storage', checkApiKey);
+    };
+  }, []);
+
   return (
     <Card className="h-full flex flex-col">
       <CardHeader>
         <CardTitle className="text-xl">Chat</CardTitle>
       </CardHeader>
       <CardContent className="flex-grow overflow-y-auto max-h-[60vh] min-h-[400px]">
+        {!hasApiKey && (
+          <Alert variant="warning" className="mb-4">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+              Please set your OpenAI API key in the settings to use the chat functionality.
+            </AlertDescription>
+          </Alert>
+        )}
+        
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center p-8">
             <BookOpen className="h-16 w-16 text-muted-foreground mb-4" />
@@ -79,12 +108,12 @@ const ChatPanel = ({
                 handleSendMessage();
               }
             }}
-            disabled={chunks.length === 0 || isSending}
+            disabled={chunks.length === 0 || isSending || !hasApiKey}
             className="flex-grow"
           />
           <Button
             onClick={handleSendMessage}
-            disabled={chunks.length === 0 || !input.trim() || isSending}
+            disabled={chunks.length === 0 || !input.trim() || isSending || !hasApiKey}
           >
             {isSending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
