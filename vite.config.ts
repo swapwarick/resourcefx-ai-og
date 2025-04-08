@@ -26,5 +26,13 @@ export default defineConfig(({ mode }) => ({
     commonjsOptions: {
       include: [/pdfjs-dist/],
     },
+    rollupOptions: {
+      // Make sure to bundle the PDF.js worker
+      output: {
+        manualChunks: {
+          pdfjs: ['pdfjs-dist']
+        }
+      }
+    }
   }
 }));

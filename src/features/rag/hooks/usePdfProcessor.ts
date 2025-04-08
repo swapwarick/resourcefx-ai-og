@@ -3,8 +3,12 @@ import { toast } from "@/hooks/use-toast";
 import * as pdfjsLib from "pdfjs-dist";
 import { PDFDocumentProxy } from "pdfjs-dist";
 
-// Initialize PDF.js worker using a path to a worker file in the public folder
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+// Set up the worker directly from the pdfjs-dist package
+// This will inline the worker in the build process
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.mjs',
+  import.meta.url
+).href;
 
 export const usePdfProcessor = () => {
   const extractTextFromPdf = async (file: File): Promise<string> => {
