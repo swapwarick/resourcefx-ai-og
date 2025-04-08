@@ -52,7 +52,7 @@ const ChatPanel = ({
       </CardHeader>
       <CardContent className="flex-grow overflow-y-auto max-h-[60vh] min-h-[400px]">
         {!hasApiKey && (
-          <Alert variant="warning" className="mb-4">
+          <Alert variant="default" className="mb-4">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>
               Please set your OpenAI API key in the settings to use the chat functionality.
