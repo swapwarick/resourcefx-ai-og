@@ -1,83 +1,66 @@
 
-import { useState } from "react";
-import DocumentSidebar from "./components/DocumentSidebar";
-import ChatPanel from "./components/ChatPanel";
-import ApiKeySettings from "./components/ApiKeySettings";
-import { useRagProcessor } from "./hooks/useRagProcessor";
-import { useRagChat } from "./hooks/useRagChat";
-import { Message } from "./types";
-import { Toaster } from "@/components/ui/toaster";
+import { useRagApplication } from "./hooks/useRagApplication";
+import { DocumentUploader } from "./components/DocumentUploader";
+import { ChatInterface } from "./components/ChatInterface";
+import { SettingsDialog } from "./components/SettingsDialog";
 
 const RagApplication = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [documentContent, setDocumentContent] = useState<string>("");
-  
   const {
-    file,
     fileName,
-    isUploading,
     isProcessing,
-    chunks,
-    embeddings,
-    fileInputRef,
-    extractor,
-    handleFileChange,
-    handleUploadAndProcess,
-    handleReset,
-  } = useRagProcessor({ setDocumentContent, setMessages });
-
-  const {
-    input,
-    isSending,
-    messagesEndRef,
-    handleSendMessage,
-    setInput
-  } = useRagChat({
+    progress,
+    error,
     messages,
-    setMessages,
-    chunks,
-    embeddings,
-    extractor
-  });
+    isSending,
+    documentChunks,
+    handleFileSelect,
+    handleSendMessage
+  } = useRagApplication();
 
   return (
-    <div className="min-h-screen bg-background py-12">
-      <Toaster />
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Chat with Your PDF</h1>
-          <ApiKeySettings />
+    <div className="container mx-auto py-8 px-4">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">PDF Question Answering</h1>
+        <SettingsDialog />
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Document Section */}
+        <div className="md:col-span-1">
+          <DocumentUploader
+            isProcessing={isProcessing}
+            fileName={fileName}
+            progress={progress}
+            error={error}
+            onFileSelect={handleFileSelect}
+          />
+          
+          {documentChunks.length > 0 && (
+            <div className="mt-4 p-4 bg-muted rounded-lg">
+              <h3 className="font-medium mb-2">Document Info</h3>
+              <p className="text-sm text-muted-foreground">
+                Processed {documentChunks.length} sections
+              </p>
+            </div>
+          )}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          {/* Left sidebar - Document info */}
-          <div className="md:col-span-3">
-            <DocumentSidebar 
-              file={file}
-              fileName={fileName}
-              chunks={chunks}
-              documentContent={documentContent}
-              isUploading={isUploading}
-              isProcessing={isProcessing}
-              fileInputRef={fileInputRef}
-              handleFileChange={handleFileChange}
-              handleUploadAndProcess={handleUploadAndProcess}
-              handleReset={handleReset}
-            />
-          </div>
-
-          {/* Main content - Chat */}
-          <div className="md:col-span-9">
-            <ChatPanel
-              messages={messages}
-              input={input}
-              isSending={isSending}
-              chunks={chunks}
-              messagesEndRef={messagesEndRef}
-              setInput={setInput}
-              handleSendMessage={handleSendMessage}
-            />
-          </div>
+        {/* Chat Section */}
+        <div className="md:col-span-2">
+          <ChatInterface
+            messages={messages}
+            isLoading={isSending}
+            disabled={documentChunks.length === 0}
+            onSendMessage={handleSendMessage}
+          />
+          
+          {documentChunks.length === 0 && !isProcessing && (
+            <div className="mt-4 p-4 bg-muted/50 rounded-lg text-center">
+              <p className="text-muted-foreground">
+                Upload and process a PDF document to start asking questions
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
